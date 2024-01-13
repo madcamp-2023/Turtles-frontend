@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Notifications.css'; // 스타일을 위한 CSS 파일
+import { Button } from '@mui/base';
 
 // 단일 리스트 아이템 컴포넌트
 const ListItem = ({ icon, text, isEnabled, onToggle }) => {
@@ -47,15 +48,17 @@ const NotificationSettings = () => {
         <div className="settings">
             <h2 className="title">나의 알림</h2>
             {Object.entries(settings).map(([text, isEnabled], index) => (
-                <ListItem 
-                    key={index} 
-                    icon={'🔔'} 
-                    text={text} 
-                    isEnabled={isEnabled} 
-                    onToggle={() => toggleSwitch(text)} 
+                <ListItem
+                    key={index}
+                    icon={'🔔'}
+                    text={text}
+                    isEnabled={isEnabled}
+                    onToggle={() => toggleSwitch(text)}
                 />
             ))}
-        </div>
+            <div className="button-container">
+                <Button>개발 시작하기</Button>
+            </div>        </div>
     );
 };
 
