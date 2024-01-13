@@ -1,0 +1,49 @@
+.container {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    margin: 0;
+  }
+  
+  .add-button {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .items {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .item img {
+    margin-right: 10px;
+  }
+  
+  .item .text {
+    flex-grow: 1;
+  }
+  
+  .item.checked .text {
+    text-decoration: line-through;
+    color: grey;
+  }
+  
+  /* 추가적인 스타일링을 원하시면 이곳에 작성하세요. */
+  

@@ -19,7 +19,7 @@ const ListItem = ({ icon, text, isEnabled, onToggle }) => {
 const NotificationSettings = () => {
     const [settings, setSettings] = useState({
         '허리 스트레칭': false,
-        '어께 스트레칭': false,
+        '어깨 스트레칭': false,
         '산책 다녀오기': false,
         '물 마시기': false,
         '화면 멀리서 보기': false,
