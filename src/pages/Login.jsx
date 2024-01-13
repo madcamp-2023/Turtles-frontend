@@ -1,5 +1,13 @@
 import React from "react";
+import LoginBtn from "../components/LoginBtn";
 
-function Login() {}
+function Login() {
+  return (
+    <div>
+      <LoginBtn />
+      <div>This is login page</div>
+    </div>
+  );
+}
 
 export default Login;
