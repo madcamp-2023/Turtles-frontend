@@ -11,13 +11,11 @@ import Home from "./Home";
 function Callback() {
   const [token, setToken] = useState("");
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log(`code: ${code}`);
-  const tokenUrl = `https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecrets}&code=${code}&redirect_uri=${redirectUrl}`;
 
   useEffect(() => {
     const getToken = async () => {
       try {
-        await fetch(`${localPort}/login`, {
+        const response = await fetch(`${localPort}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -25,10 +23,15 @@ function Callback() {
           body: JSON.stringify({
             code: code,
           }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.error("Error fetching data:", error));
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        // Assuming your response contains a 'token' property
+        if (data) {
+          setToken(data);
+        }
       } catch (error) {
         console.error("Error fetching access token:", error);
       }
@@ -39,6 +42,11 @@ function Callback() {
       getToken();
     }
   }, [code]);
+
+  // Render Home component when token is available
+  if (token) {
+    return <Home />;
+  }
 
   return <div>This is Callback {code}</div>;
 }
