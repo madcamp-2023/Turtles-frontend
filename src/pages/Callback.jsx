@@ -11,7 +11,13 @@ import Home from "./Home";
 function Callback() {
   const [token, setToken] = useState("");
   const code = new URL(window.location.href).searchParams.get("code");
-
+  const handleLogin = async ({ uid, name, login, profile_img, github_url }) => {
+    localStorage.setItem("uid", uid);
+    localStorage.setItem("name", name);
+    localStorage.setItem("github_id", login);
+    localStorage.setItem("profile_img", profile_img);
+    localStorage.setItem("github_url", github_url);
+  };
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -29,7 +35,14 @@ function Callback() {
         console.log(data);
 
         // Assuming your response contains a 'token' property
-        if (data) {
+        if (data.user) {
+          handleLogin({
+            uid: data.user.uid,
+            name: data.user.name,
+            login: data.user.login,
+            profile_img: data.user.profile_img,
+            github_url: data.user.github_url,
+          });
           setToken(data);
         }
       } catch (error) {
