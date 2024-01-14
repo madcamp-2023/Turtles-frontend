@@ -1,5 +1,7 @@
+// TodoList.jsx
 import React, { useState } from 'react';
 import './TodoList.css';
+import TodoModal from './TodoModal';
 
 const TodoItem = ({ item, onItemCheck }) => {
   const [isChecked, setIsChecked] = useState(item.checked);
@@ -8,7 +10,7 @@ const TodoItem = ({ item, onItemCheck }) => {
     setIsChecked(!isChecked);
     // 아이템의 상태를 콘솔에 출력
     console.log(`아이콘: ${item.icon}, 텍스트: ${item.text}, 체크여부: ${!isChecked}`);
-    
+
     // 아이템의 체크 상태를 부모 컴포넌트로 전달
     onItemCheck(item.id, !isChecked);
   };
@@ -24,6 +26,15 @@ const TodoItem = ({ item, onItemCheck }) => {
 
 const TodoList = ({ title, items }) => {
   const [todoItems, setTodoItems] = useState(items);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   // 아이템의 체크 상태가 변경될 때 실행되는 함수
   const handleItemCheck = (itemId, isChecked) => {
@@ -39,17 +50,34 @@ const TodoList = ({ title, items }) => {
     console.log('투두리스트 전체 상태:', updatedItems);
   };
 
+  const handleAddItem = (newItem) => {
+    const updatedItems = [...todoItems, newItem];
+    setTodoItems(updatedItems);
+
+    // 새로운 아이템이 추가된 후의 투두리스트를 콘솔에 출력
+    console.log('새로운 아이템이 추가된 투두리스트:', updatedItems);
+  };
+
   return (
     <div className="container">
       <header className="header">
         <h2 className="title">{title}</h2>
-        <button className="add-button">+</button>
+        <button className="add-button" onClick={handleAddClick}>+</button>
       </header>
       <div className="items">
         {todoItems.map((item, index) => (
           <TodoItem key={index} item={item} onItemCheck={handleItemCheck} />
         ))}
       </div>
+      {isModalOpen && (
+        <TodoModal
+        onClose={handleCloseModal}
+        onAddItem={handleAddItem}
+      >
+          <p>모달 컨텐츠</p>
+          {/* 기타 내용 */}
+        </TodoModal>
+      )}
     </div>
   );
 };
