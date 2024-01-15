@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import qs from "qs";
-import {
-  clientId,
-  clientSecrets,
-  localPort,
-  redirectUrl,
-} from "../constants/Env";
 import Home from "./Home";
 
 function Callback() {
   const [token, setToken] = useState("");
   const code = new URL(window.location.href).searchParams.get("code");
+  const localPort = process.env.LOCAL_PORT;
   const handleLogin = async ({ uid, name, login, profile_img, github_url }) => {
     localStorage.setItem("uid", uid);
     localStorage.setItem("name", name);
