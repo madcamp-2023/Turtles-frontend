@@ -1,20 +1,48 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 
-function App() {
+import Callback from "./pages/Callback";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+
+const PrivateRoute = ({ children }) => {
   const navigate = useNavigate();
+  const uid = localStorage.getItem("uid");
 
   useEffect(() => {
-    console.log("App");
-    const uid = localStorage.getItem("uid");
-    if (uid) {
-      navigate("/home");
-    } else {
+    console.log("PrivateRoute");
+    if (!uid) {
       navigate("/login");
     }
-  }, [navigate]);
+  }, [uid, navigate]);
 
-  return <div>Loading...</div>;
+  return uid ? children : null;
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/callback" element={<Callback />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route
+          path="/home/*"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
