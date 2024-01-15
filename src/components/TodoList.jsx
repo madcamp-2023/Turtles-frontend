@@ -1,5 +1,5 @@
 // TodoList.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import './TodoList.css';
 import TodoModal from './TodoModal';
 
@@ -28,6 +28,33 @@ const TodoList = ({ title, items }) => {
   const [todoItems, setTodoItems] = useState(items);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+  useEffect(() => {
+    const localPort = process.env.REACT_APP_LOCAL_PORT;
+    const uid = localStorage.getItem("uid");
+    const today = new Date(); 
+    const date = today.toISOString().split('T')[0];
+    const getTodo = async () => {
+      try {
+        const response = await fetch(`${localPort}/todo?uid=${uid}&date=${date}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching access todo:", error);
+      }
+    }
+
+    getTodo();
+  });
+
+
   const handleAddClick = () => {
     setIsModalOpen(true);
   };
@@ -51,7 +78,10 @@ const TodoList = ({ title, items }) => {
   };
 
   const handleAddItem = (newItem) => {
-    const updatedItems = [...todoItems, newItem];
+    const maxId = todoItems.reduce((max, item) => Math.max(max, item.id), 0);
+    const newItemWithId = { id: maxId + 1, ...newItem};
+
+    const updatedItems = [...todoItems, newItemWithId];
     setTodoItems(updatedItems);
 
     // 새로운 아이템이 추가된 후의 투두리스트를 콘솔에 출력

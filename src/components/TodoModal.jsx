@@ -18,7 +18,7 @@ const TodoModal = ({ onClose, onAddItem }) => {
 
   const handleAdd = () => {
     if (inputText && chosenEmoji) {
-      onAddItem({ text: inputText, icon: chosenEmoji.emoji, checked: false });
+      onAddItem({ text: inputText, checked: false,  icon: chosenEmoji.emoji });
       onClose();
     }
   };

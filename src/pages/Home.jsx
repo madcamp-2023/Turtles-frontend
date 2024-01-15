@@ -1,3 +1,4 @@
+//Home.jsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./Home.css"
@@ -10,14 +11,14 @@ function Home() {
   return (
     <div className="App">
       <div className="AppGlass">
-          <Sidebar/>
-          <Routes>
-            <Route path="/alarm" element={<Alarm />} />
-            <Route path="/todo" element={<ToDo />} />
-            <Route path="/social" element={<Social />} />
-          </Routes>
+        <Sidebar />
+        <Routes>
+          <Route path="/alarm" element={<Alarm />} />
+          <Route path="/todo" element={<ToDo />} />
+          <Route path="/social" element={<Social />} />
+        </Routes>
       </div>
-    </div> 
+    </div>
   );
 }
 
