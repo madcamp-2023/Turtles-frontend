@@ -35,6 +35,7 @@ function ReactCalendar() {
           onChange={onChange}
           value={value}
           tileContent={tileContent}
+          minDetail = "month"
         />
       </div>
     );

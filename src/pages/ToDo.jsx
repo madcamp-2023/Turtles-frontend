@@ -2,12 +2,9 @@ import React from "react";
 import TodoList from "../components/TodoList";
 import ReactCalendar from "../components/ReactCalendar";
 import '../components/TodoList.css';
+import '../components/ReactCalendar.css'
 
-const items = [
-  { id: 1, text: '물 마시기', checked: false, icon: '💧' },
-  { id: 2, text: '비타민 먹기', checked: false, icon: '💊' },
-];
-
+const items = [];
 
 function ToDo() {
 
