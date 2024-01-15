@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 import Home from "./Home";
 
 function Callback() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(false);
   const code = new URL(window.location.href).searchParams.get("code");
   const localPort = process.env.REACT_APP_LOCAL_PORT;
-  const handleLogin = async ({ uid, name, login, profile_img, github_url }) => {
+  const handleLogin = async ({
+    uid,
+    name,
+    login,
+    profile_img,
+    github_url,
+    bio,
+  }) => {
     localStorage.setItem("uid", uid);
     localStorage.setItem("name", name);
     localStorage.setItem("github_id", login);
     localStorage.setItem("profile_img", profile_img);
     localStorage.setItem("github_url", github_url);
+    localStorage.setItem("bio", bio);
   };
   useEffect(() => {
     const getToken = async () => {
@@ -29,15 +37,16 @@ function Callback() {
         console.log(data);
 
         // Assuming your response contains a 'token' property
-        if (data.user) {
+        if (data.userInfo) {
           handleLogin({
-            uid: data.user.uid,
-            name: data.user.name,
-            login: data.user.login,
-            profile_img: data.user.profile_img,
-            github_url: data.user.github_url,
+            uid: data.userInfo.uid,
+            name: data.userInfo.name,
+            login: data.userInfo.login,
+            profile_img: data.userInfo.profile_img,
+            github_url: data.userInfo.github_url,
+            bio: data.userInfo.bio,
           });
-          setToken(data);
+          setToken(true);
         }
       } catch (error) {
         console.error("Error fetching access token:", error);
