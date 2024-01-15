@@ -53,5 +53,21 @@
   }
   
   /* 추가적인 스타일링을 원하시면 이곳에 작성하세요. */
-  
-  
+
+
+.context-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  z-index: 1000;
+}
+
+.context-menu-item {
+  cursor: pointer;
+  padding: 5px;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
