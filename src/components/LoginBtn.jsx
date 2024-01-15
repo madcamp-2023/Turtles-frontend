@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import { clientId, redirectUrl } from "../constants/Env";
 
 function LoginBtn() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+  const redirectUri = process.env.REACT_APP_REDIRECT_URI;
 
-  // const codeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo:status read:repo_hook user:email&redirect_uri=${redirectUrl}`;
-  const codeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
+  console.log(`clientId: ${clientId}`);
+  console.log(`redirectUri: ${redirectUri}`);
+
+  const codeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
 
   return (
     <Button variant="contained" href={codeUrl}>
