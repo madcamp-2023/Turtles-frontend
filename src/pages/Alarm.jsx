@@ -9,7 +9,6 @@ function Alarm() {
     <div>
       <div>This is Alarm page</div>
       <Notifications />
-      {/* <Notifier interval={5} message={"notification in alarm"} /> */}
     </div>
   );
 }
