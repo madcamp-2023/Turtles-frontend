@@ -1,20 +1,20 @@
-import { useState, useRouter } from "react";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import { Router, Route, Routes } from "react-router-dom";
-import Callback from "./pages/Callback";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
-  return isLoggedIn ? (
-    <Home />
-  ) : (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/callback" element={<Callback />} />
-    </Routes>
-  );
+  useEffect(() => {
+    console.log("App");
+    const uid = localStorage.getItem("uid");
+    if (uid) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  return <div>Loading...</div>;
 }
 
 export default App;
