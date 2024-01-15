@@ -2,6 +2,7 @@ import React from "react";
 import TodoList from "../components/TodoList";
 import ReactCalendar from "../components/ReactCalendar";
 import '../components/TodoList.css';
+import '../components/ReactCalendar.css'
 
 const items = [];
 

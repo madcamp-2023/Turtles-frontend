@@ -1,0 +1,8 @@
+.react-calendar__navigation button:disabled {
+    background-color: #ffff;
+}
+
+.react-calendar__navigation__label__labelText {
+    color: black;
+}
+
