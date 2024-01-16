@@ -6,15 +6,27 @@ import Stack from "@mui/material/Stack";
 
 export default function Following() {
   const [following, setFollowing] = useState([]);
+  const [updateFollowing, setUpdateFollowing] = useState(false);
   const localPort = process.env.REACT_APP_LOCAL_PORT;
   const uid = localStorage.getItem("uid");
   const queryParams = new URLSearchParams({
     uid: uid,
   });
 
+  console.log(`updateFollowing: ${updateFollowing}`);
+
+  const handleUpdateFollowing = () => {
+    console.log("handleUpdateFollowing called");
+    setUpdateFollowing(true);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Introduce a delay of 1000 milliseconds (1 second)
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        await delay(1000);
+
         const response = await fetch(
           `${localPort}/friend?${queryParams.toString()}`,
           {
@@ -36,16 +48,18 @@ export default function Following() {
         console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
-  }, []);
+    setUpdateFollowing(false);
+  }, [updateFollowing]);
 
   return (
     <>
-      <Stack direction="column">
-        <SearchBar />
+      <Stack direction="column" spacing={2}>
+        <SearchBar onUpdate={handleUpdateFollowing} />
         <Stack direction="column" spacing={2} alignItems="center">
           <div className="following-title">팔로잉 목록</div>
-          <Stack direction="column">
+          <Stack direction="column" spacing={2}>
             {following.map((user) => (
               <UserProfile
                 key={user.uid}
