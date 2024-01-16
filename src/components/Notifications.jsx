@@ -1,5 +1,5 @@
 //Notifications.jsx
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Notifications.css";
 import { Button } from "@mui/base";
 import Notifier from "./Notifier";
@@ -38,7 +38,6 @@ const ListItem = ({ text, isEnabled, onToggle }) => {
 // 전체 리스트를 표시하는 컴포넌트
 const NotificationSettings = () => {
   const [settings, setSettings] = useState({
-
     "스트레칭 알림": false,
     "산책 알림": false,
     "물 마시기 알림": false,
@@ -55,7 +54,6 @@ const NotificationSettings = () => {
     webCamRef.current.closeWebcam();
   };
 
-
   // 상태가 바뀔 때마다 실행될 useEffect 훅
   useEffect(() => {
     console.log(settings);
@@ -70,7 +68,7 @@ const NotificationSettings = () => {
       };
       setSettings(newSettings);
 
-      if (text === "화면 거리 조절") {
+      if (text === "화면과의 거리 조절 알림") {
         if (newSettings[text]) {
           handleOpenWebcam();
         } else {
@@ -84,7 +82,6 @@ const NotificationSettings = () => {
   };
 
   return (
-
     <div className="noti-container">
       <div className="settings">
         <h2 className="title">나의 알림</h2>
@@ -99,22 +96,22 @@ const NotificationSettings = () => {
           ))}
         </Stack>
 
-        {settings["스트레칭 하기"] ? (
+        {settings["스트레칭 알림"] ? (
           <Notifier message={"스트레칭을 할 시간이에요!"} interval={60} />
         ) : (
           <></>
         )}
-        {settings["산책 다녀오기"] ? (
+        {settings["산책 알림"] ? (
           <Notifier message={"산책 다녀올 시간이에요!"} interval={60} />
         ) : (
           <></>
         )}
-        {settings["물 마시기"] ? (
+        {settings["물 마시기 알림"] ? (
           <Notifier message={"물 마실 시간이에요!"} interval={60} />
         ) : (
           <></>
         )}
-        {settings["눈 운동하기"] ? (
+        {settings["눈 운동 알림"] ? (
           <Notifier message={"눈 운동할 시간이에요!"} interval={60} />
         ) : (
           <></>

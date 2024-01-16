@@ -1,14 +1,16 @@
 // TodoList.jsx
 import React, { useEffect, useState } from "react";
-import './TodoList.css';
-import TodoModal from './TodoModal';
+import "./TodoList.css";
+import TodoModal from "./TodoModal";
 
 const TodoItem = ({ item, onItemCheck, onItemDelete }) => {
   const [isChecked, setIsChecked] = useState(item.checked);
 
   const handleCheck = () => {
     setIsChecked(!isChecked);
-    console.log(`아이콘: ${item.icon}, 텍스트: ${item.text}, 체크여부: ${!isChecked}`);
+    console.log(
+      `아이콘: ${item.icon}, 텍스트: ${item.text}, 체크여부: ${!isChecked}`
+    );
     // 아이템의 체크 상태를 부모 컴포넌트로 전달
     onItemCheck(item.id, !isChecked);
   };
@@ -20,14 +22,14 @@ const TodoItem = ({ item, onItemCheck, onItemDelete }) => {
   const contextMenuHandler = (e) => {
     e.preventDefault(); // 기본 컨텍스트 메뉴 표시 방지
     // 컨텍스트 메뉴 생성
-    const contextMenu = document.createElement('div');
-    contextMenu.classList.add('context-menu');
+    const contextMenu = document.createElement("div");
+    contextMenu.classList.add("context-menu");
 
     // "삭제" 메뉴 아이템 추가
-    const deleteMenuItem = document.createElement('div');
-    deleteMenuItem.textContent = '삭제';
-    deleteMenuItem.classList.add('context-menu-item');
-    deleteMenuItem.addEventListener('click', handleDelete);
+    const deleteMenuItem = document.createElement("div");
+    deleteMenuItem.textContent = "삭제";
+    deleteMenuItem.classList.add("context-menu-item");
+    deleteMenuItem.addEventListener("click", handleDelete);
 
     contextMenu.appendChild(deleteMenuItem);
 
@@ -39,12 +41,15 @@ const TodoItem = ({ item, onItemCheck, onItemDelete }) => {
     document.body.appendChild(contextMenu);
 
     // 화면을 클릭하면 컨텍스트 메뉴 숨김
-    document.addEventListener('click', () => {
+    document.addEventListener("click", () => {
       contextMenu.remove();
     });
   };
   return (
-    <div className={`item ${isChecked ? 'checked' : ''}`} onContextMenu={contextMenuHandler}>
+    <div
+      className={`item ${isChecked ? "checked" : ""}`}
+      onContextMenu={contextMenuHandler}
+    >
       <span className="icon">{item.icon}</span>
       <span className="text">{item.text}</span>
       <input type="checkbox" checked={isChecked} onChange={handleCheck} />
@@ -56,12 +61,11 @@ const TodoList = ({ title, items }) => {
   const [todoItems, setTodoItems] = useState(items);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const handleItemDelete = async (itemId) => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
     const uid = localStorage.getItem("uid");
     const today = new Date();
-    const date = today.toISOString().split('T')[0];
+    const date = today.toISOString().split("T")[0];
     const updatedItems = todoItems.filter((item) => item.id !== itemId);
     setTodoItems(updatedItems);
 
@@ -96,16 +100,18 @@ const TodoList = ({ title, items }) => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
     const uid = localStorage.getItem("uid");
     const today = new Date();
-    const date = today.toISOString().split('T')[0];
+    const date = today.toISOString().split("T")[0];
     const getTodo = async () => {
       try {
-        const response = await fetch(`${localPort}/todo?uid=${uid}&date=${date}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-        });
+        const response = await fetch(
+          `${localPort}/todo?uid=${uid}&date=${date}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const data = await response.json();
         if (data.success && data.todos.length > 0) {
@@ -120,11 +126,10 @@ const TodoList = ({ title, items }) => {
       } catch (error) {
         console.error("Error fetching access todo:", error);
       }
-    }
+    };
 
     getTodo();
   }, []);
-
 
   const handleAddClick = () => {
     setIsModalOpen(true);
@@ -139,7 +144,7 @@ const TodoList = ({ title, items }) => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
     const uid = localStorage.getItem("uid");
     const today = new Date();
-    const date = today.toISOString().split('T')[0];
+    const date = today.toISOString().split("T")[0];
     const updatedItems = todoItems.map((item) => {
       if (item.id === itemId) {
         return { ...item, checked: isChecked };
@@ -180,7 +185,7 @@ const TodoList = ({ title, items }) => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
     const uid = localStorage.getItem("uid");
     const today = new Date();
-    const date = today.toISOString().split('T')[0];
+    const date = today.toISOString().split("T")[0];
     const maxId = todoItems.reduce((max, item) => Math.max(max, item.id), 0);
     const newItemWithId = { id: maxId + 1, ...newItem };
 
@@ -219,7 +224,13 @@ const TodoList = ({ title, items }) => {
       <header className="header">
         <h2 className="title">{title}</h2>
         <button className="add-button" onClick={handleAddClick}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
             <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#799E7D" />
           </svg>
         </button>
@@ -235,10 +246,7 @@ const TodoList = ({ title, items }) => {
         ))}
       </div>
       {isModalOpen && (
-        <TodoModal
-          onClose={handleCloseModal}
-          onAddItem={handleAddItem}
-        >
+        <TodoModal onClose={handleCloseModal} onAddItem={handleAddItem}>
           <p>모달 컨텐츠</p>
           {/* 기타 내용 */}
         </TodoModal>

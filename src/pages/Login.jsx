@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LoginBtn from "../components/LoginBtn";
+import "./Login.css";
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("uid")) {
-      setIsLoggedIn(true);
-    }
-  }, []);
   return (
-    <div>
+    <div className="Login">
       <LoginBtn />
-      <div>This is login page</div>
     </div>
   );
 }
