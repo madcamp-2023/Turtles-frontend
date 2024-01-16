@@ -1,6 +1,6 @@
 // BioModal.jsx
 import React, { useState } from 'react';
-import './BioModal.css';
+import './TodoModal.css';
 
 const BioModal = ({ onClose, onUpdateBio, children }) => {
     const [newBio, setNewBio] = useState('');
