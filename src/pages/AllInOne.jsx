@@ -19,9 +19,9 @@ export default function AllInOne() {
           <MyProfile />
           <Alarm />
         </Stack>
-        <Stack>
+        <Stack spacing={4}>
           <ReactCalendar />
-          <TodoList title="todo-list" items={items} />
+          <TodoList title="오늘의 건강 관리" items={items} />
         </Stack>
         <Following />
       </Stack>

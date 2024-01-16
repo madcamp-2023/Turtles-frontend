@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import Home from "./Home";
+import "./Callback.css";
 
 function Callback() {
   const [token, setToken] = useState(false);
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const code = new URL(window.location.href).searchParams.get("code");
   const localPort = process.env.REACT_APP_LOCAL_PORT;
+  const uid = localStorage.getItem("uid");
 
+  useEffect(() => {
+    if (uid) {
+      // Navigate to the Login page if uid is undefined
+      navigate("/home");
+    }
+  }, [uid, navigate]);
   const handleLogin = async ({
     uid,
     name,
@@ -71,7 +79,11 @@ function Callback() {
     return <Home />;
   }
 
-  return <div>This is Callback {code}</div>;
+  return (
+    <div className="callback">
+      <div className="callback-text">로딩 중 ...</div>
+    </div>
+  );
 }
 
 export default Callback;

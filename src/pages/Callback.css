@@ -1,0 +1,23 @@
+.callback {
+  background: linear-gradient(
+    180deg,
+    #b1e3b6 0%,
+    rgba(255, 186, 11, 0.425) 100%
+  );
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+.callback-text {
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 123.5%; /* 39.52px */
+  letter-spacing: 0.25px;
+}
