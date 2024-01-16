@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import "./Notifications.css"; // 스타일을 위한 CSS 파일
+//Notifications.jsx
+import React, { useState, useEffect, useRef  } from "react";
+import "./Notifications.css";
 import { Button } from "@mui/base";
 import Notifier from "./Notifier";
+import WebCam from "./WebCam";
 
 // 단일 리스트 아이템 컴포넌트
 const ListItem = ({ icon, text, isEnabled, onToggle }) => {
@@ -24,7 +26,18 @@ const NotificationSettings = () => {
     "산책 다녀오기": false,
     "물 마시기": false,
     "눈 운동하기": false,
+    "화면 거리 조절": false,
   });
+  const webCamRef = useRef();
+
+  const handleOpenWebcam = () => {
+    webCamRef.current.startVideo();
+  };
+
+  const handleCloseWebcam = () => {
+    webCamRef.current.closeWebcam();
+  };
+
 
   // 상태가 바뀔 때마다 실행될 useEffect 훅
   useEffect(() => {
@@ -38,6 +51,15 @@ const NotificationSettings = () => {
         ...prevSettings,
         [text]: !prevSettings[text],
       };
+      setSettings(newSettings);
+
+      if (text === "화면 거리 조절") {
+        if (newSettings[text]) {
+          handleOpenWebcam();
+        } else {
+          handleCloseWebcam();
+        }
+      }
 
       // 상태 업데이트
       return newSettings;
@@ -56,11 +78,8 @@ const NotificationSettings = () => {
           onToggle={() => toggleSwitch(text)}
         />
       ))}
-      <div className="button-container">
-        <Button>개발 시작하기</Button>
-      </div>
       {settings["스트레칭 하기"] ? (
-        <Notifier message={"스트레칭을 할 시간이에요!"} interval={60} />
+        <Notifier message={"스트레칭을 할 시간이에요!"} interval={1} />
       ) : (
         <></>
       )}
@@ -79,6 +98,7 @@ const NotificationSettings = () => {
       ) : (
         <></>
       )}
+      <WebCam ref={webCamRef} />
     </div>
   );
 };

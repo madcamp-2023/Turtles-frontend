@@ -36,6 +36,8 @@ function ReactCalendar() {
           value={value}
           tileContent={tileContent}
           minDetail = "month"
+          next2Label={null}
+          prev2Label={null}
         />
       </div>
     );
