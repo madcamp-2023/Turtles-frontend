@@ -1,0 +1,22 @@
+.search-overlay {
+  position: absolute;
+  top: 50px; /* Adjust the top position as needed */
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 1000; /* Ensure it is on top of other content */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.input-container {
+  display: flex;
+  width: 340px;
+  padding: 12px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+}
