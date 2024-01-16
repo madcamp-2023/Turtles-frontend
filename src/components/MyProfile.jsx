@@ -1,21 +1,20 @@
 //MyProfile.jsx
 
-import React, { useState, useEffect } from 'react';
-import './MyProfile.css';
-import BioModal from './BioModal';
+import React, { useState, useEffect } from "react";
+import "./MyProfile.css";
+import BioModal from "./BioModal";
 
 const MyProfile = () => {
-
   const github_id = localStorage.getItem("github_id");
   const name = localStorage.getItem("name");
   const profile_img = localStorage.getItem("profile_img");
+  const bio = localStorage.getItem("bio");
 
   const [userData, setUserData] = useState({
     profilePicture: profile_img,
     name: name,
     id: github_id,
-    bio: '한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.한줄소개입니다.',
-
+    bio: "",
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,12 +25,12 @@ const MyProfile = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-  }
+  };
 
   const handleUpdateBio = (newBio) => {
-    setUserData(prevState => ({
+    setUserData((prevState) => ({
       ...prevState,
-      bio: newBio
+      bio: newBio,
     }));
   };
 
@@ -40,7 +39,10 @@ const MyProfile = () => {
       {/* 상단 컨테이너: 프로필 사진과 사용자 이름, 아이디를 포함 */}
       <div className="my-info-top">
         <div className="profile-picture">
-          <img src={userData.profilePicture} alt={`${userData.name}'s profile`} />
+          <img
+            src={userData.profilePicture}
+            alt={`${userData.name}'s profile`}
+          />
         </div>
         <div className="my-info-container">
           <div className="my-info">{userData.name}</div>
@@ -51,7 +53,9 @@ const MyProfile = () => {
       <div className="my-bio-container">
         <div className="my-bio">{userData.bio}</div>
         {/* 버튼을 여기에 둘 수도 있고, 아니면 제거할 수도 있습니다. */}
-        <button className="bio-button" onClick={handleClick}>Button</button>
+        <button className="bio-button" onClick={handleClick}>
+          Button
+        </button>
       </div>
 
       {isModalOpen && (
@@ -61,7 +65,6 @@ const MyProfile = () => {
       )}
     </div>
   );
-
 };
 
 export default MyProfile;

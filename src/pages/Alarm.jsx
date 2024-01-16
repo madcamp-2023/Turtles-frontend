@@ -6,10 +6,9 @@ import Notifier from "../components/Notifier";
 
 function Alarm() {
   return (
-    <div>
-      <div>This is Alarm page</div>
+    <>
       <Notifications />
-    </div>
+    </>
   );
 }
 
