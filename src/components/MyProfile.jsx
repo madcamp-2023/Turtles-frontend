@@ -1,8 +1,10 @@
-//MyProfile.jsx
-
 import React, { useState, useEffect } from "react";
 import "./MyProfile.css";
 import BioModal from "./BioModal";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 
 const MyProfile = () => {
   const github_id = localStorage.getItem("github_id");
@@ -14,7 +16,7 @@ const MyProfile = () => {
     profilePicture: profile_img,
     name: name,
     id: github_id,
-    bio: "",
+    bio: bio,
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,34 +37,36 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="my-profile">
-      {/* 상단 컨테이너: 프로필 사진과 사용자 이름, 아이디를 포함 */}
-      <div className="my-info-top">
-        <div className="profile-picture">
-          <img
-            src={userData.profilePicture}
-            alt={`${userData.name}'s profile`}
-          />
+    <div className="my-profile-container">
+      <div className="my-profile">
+        <div className="my-info-top">
+          <div className="profile-picture">
+            <img
+              src={userData.profilePicture}
+              alt={`${userData.name}'s profile`}
+            />
+          </div>
+          <div className="my-info-container">
+            <div className="my-info">{userData.name}</div>
+            <Typography variant="h6" gutterBottom className="my-id">
+              @{userData.id}
+            </Typography>
+          </div>
         </div>
-        <div className="my-info-container">
-          <div className="my-info">{userData.name}</div>
-          <div className="my-id">@{userData.id}</div>
-        </div>
-      </div>
-      {/* 하단 컨테이너: 한줄 소개와 버튼을 포함 */}
-      <div className="my-bio-container">
-        <div className="my-bio">{userData.bio}</div>
-        {/* 버튼을 여기에 둘 수도 있고, 아니면 제거할 수도 있습니다. */}
-        <button className="bio-button" onClick={handleClick}>
-          Button
-        </button>
-      </div>
+        <Stack direction="row" className="my-bio-container">
+          <div className="my-bio">{userData.bio}</div>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </Stack>
 
-      {isModalOpen && (
-        <BioModal onClose={handleCloseModal} onUpdateBio={handleUpdateBio}>
-          {/* 모달 내부에 들어갈 내용 */}
-        </BioModal>
-      )}
+        {isModalOpen && (
+          <BioModal
+            onClose={handleCloseModal}
+            onUpdateBio={handleUpdateBio}
+          ></BioModal>
+        )}
+      </div>
     </div>
   );
 };
