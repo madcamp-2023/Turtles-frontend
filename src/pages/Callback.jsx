@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import Home from "./Home";
 
 function Callback() {
   const [token, setToken] = useState(false);
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const code = new URL(window.location.href).searchParams.get("code");
   const localPort = process.env.REACT_APP_LOCAL_PORT;
+
   const handleLogin = async ({
     uid,
     name,
-    login,
+    github_id,
     profile_img,
     github_url,
     bio,
   }) => {
+    console.log("handling login");
     localStorage.setItem("uid", uid);
     localStorage.setItem("name", name);
-    localStorage.setItem("github_id", login);
+    localStorage.setItem("github_id", github_id);
     localStorage.setItem("profile_img", profile_img);
     localStorage.setItem("github_url", github_url);
     localStorage.setItem("bio", bio);
+
+    // Use the navigate function to navigate to '/home'
+    navigate("/home");
   };
+
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -34,14 +42,13 @@ function Callback() {
         });
 
         const data = await response.json();
-        console.log(data);
-
+        console.log("data", data);
         // Assuming your response contains a 'token' property
-        if (data.userInfo) {
+        if (data.success) {
           handleLogin({
             uid: data.userInfo.uid,
             name: data.userInfo.name,
-            login: data.userInfo.login,
+            github_id: data.userInfo.github_id,
             profile_img: data.userInfo.profile_img,
             github_url: data.userInfo.github_url,
             bio: data.userInfo.bio,
@@ -57,7 +64,7 @@ function Callback() {
     if (code) {
       getToken();
     }
-  }, [code]);
+  }, [code, navigate]);
 
   // Render Home component when token is available
   if (token) {

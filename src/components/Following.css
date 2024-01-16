@@ -1,0 +1,10 @@
+.following-title {
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 123.5%; /* 39.52px */
+  letter-spacing: 0.25px;
+}
