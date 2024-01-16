@@ -56,41 +56,41 @@ const TodoList = ({ title, items }) => {
   const [todoItems, setTodoItems] = useState(items);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  
-const handleItemDelete = async (itemId) => {
-  const localPort = process.env.REACT_APP_LOCAL_PORT;
+
+  const handleItemDelete = async (itemId) => {
+    const localPort = process.env.REACT_APP_LOCAL_PORT;
     const uid = localStorage.getItem("uid");
     const today = new Date();
     const date = today.toISOString().split('T')[0];
-  const updatedItems = todoItems.filter((item) => item.id !== itemId);
-  setTodoItems(updatedItems);
+    const updatedItems = todoItems.filter((item) => item.id !== itemId);
+    setTodoItems(updatedItems);
 
-  // 서버에 POST 요청을 보내기 위한 데이터 생성
-  const requestBody = {
-    uid: uid,
-    date: date,
-    todos: updatedItems.map((item) => ({
-      todo_name: item.text,
-      todo_complete: item.checked,
-      todo_icon: item.icon,
-    })),
+    // 서버에 POST 요청을 보내기 위한 데이터 생성
+    const requestBody = {
+      uid: uid,
+      date: date,
+      todos: updatedItems.map((item) => ({
+        todo_name: item.text,
+        todo_complete: item.checked,
+        todo_icon: item.icon,
+      })),
+    };
+
+    try {
+      const response = await fetch(`${localPort}/todo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      const data = await response.json();
+      console.log("POST response:", data);
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
-
-  try {
-    const response = await fetch(`${localPort}/todo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const data = await response.json();
-    console.log("POST response:", data);
-  } catch (error) {
-    console.error("Error deleting todo:", error);
-  }
-};
 
   useEffect(() => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
@@ -146,9 +146,9 @@ const handleItemDelete = async (itemId) => {
       }
       return item;
     });
-  
+
     setTodoItems(updatedItems);
-  
+
     // 서버에 POST 요청을 보내기 위한 데이터 생성
     const requestBody = {
       uid: uid,
@@ -159,7 +159,7 @@ const handleItemDelete = async (itemId) => {
         todo_icon: item.icon,
       })),
     };
-  
+
     try {
       const response = await fetch(`${localPort}/todo`, {
         method: "POST",
@@ -168,7 +168,7 @@ const handleItemDelete = async (itemId) => {
         },
         body: JSON.stringify(requestBody),
       });
-  
+
       const data = await response.json();
       console.log("POST response:", data);
     } catch (error) {
@@ -183,10 +183,10 @@ const handleItemDelete = async (itemId) => {
     const date = today.toISOString().split('T')[0];
     const maxId = todoItems.reduce((max, item) => Math.max(max, item.id), 0);
     const newItemWithId = { id: maxId + 1, ...newItem };
-  
+
     const updatedItems = [...todoItems, newItemWithId];
     setTodoItems(updatedItems);
-  
+
     // 서버에 POST 요청을 보내기 위한 데이터 생성
     const requestBody = {
       uid: uid,
@@ -197,7 +197,7 @@ const handleItemDelete = async (itemId) => {
         todo_icon: item.icon,
       })),
     };
-  
+
     try {
       const response = await fetch(`${localPort}/todo`, {
         method: "POST",
@@ -206,7 +206,7 @@ const handleItemDelete = async (itemId) => {
         },
         body: JSON.stringify(requestBody),
       });
-  
+
       const data = await response.json();
       console.log("POST response:", data);
     } catch (error) {
@@ -218,7 +218,11 @@ const handleItemDelete = async (itemId) => {
     <div className="container">
       <header className="header">
         <h2 className="title">{title}</h2>
-        <button className="add-button" onClick={handleAddClick}>+</button>
+        <button className="add-button" onClick={handleAddClick}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
+            <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#799E7D" />
+          </svg>
+        </button>
       </header>
       <div className="items">
         {todoItems.map((item, index) => (

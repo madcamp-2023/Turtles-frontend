@@ -25,8 +25,10 @@ const TodoModal = ({ onClose, onAddItem }) => {
 
   return (
     <div className="modal-backdrop">
-      <div className="modal">
-        {chosenEmoji ? <span>{chosenEmoji.emoji}</span> : <p>이모지를 선택하세요.</p>}
+      <div className="todo-modal">
+        <div className='choose-emoji'>
+        {chosenEmoji ? <span>이모지를 선택하세요{chosenEmoji.emoji}</span> : <span>이모지를 선택하세요.</span>}
+        </div>
         <Picker onEmojiClick={onEmojiClick} />
         <input type="text" value={inputText} onChange={handleInputChange} />
         <button onClick={handleAdd}>추가</button>

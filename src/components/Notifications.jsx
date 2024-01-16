@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import "./Notifications.css"; // 스타일을 위한 CSS 파일
+//Notifications.jsx
+import React, { useState, useEffect, useRef  } from "react";
+import "./Notifications.css";
 import { Button } from "@mui/base";
 import Notifier from "./Notifier";
+import WebCam from "./WebCam";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Stack from "@mui/material/Stack";
 
@@ -36,12 +38,23 @@ const ListItem = ({ text, isEnabled, onToggle }) => {
 // 전체 리스트를 표시하는 컴포넌트
 const NotificationSettings = () => {
   const [settings, setSettings] = useState({
+
     "스트레칭 알림": false,
     "산책 알림": false,
     "물 마시기 알림": false,
     "눈 운동 알림": false,
     "화면과의 거리 조절 알림": false,
   });
+  const webCamRef = useRef();
+
+  const handleOpenWebcam = () => {
+    webCamRef.current.startVideo();
+  };
+
+  const handleCloseWebcam = () => {
+    webCamRef.current.closeWebcam();
+  };
+
 
   // 상태가 바뀔 때마다 실행될 useEffect 훅
   useEffect(() => {
@@ -55,6 +68,15 @@ const NotificationSettings = () => {
         ...prevSettings,
         [text]: !prevSettings[text],
       };
+      setSettings(newSettings);
+
+      if (text === "화면 거리 조절") {
+        if (newSettings[text]) {
+          handleOpenWebcam();
+        } else {
+          handleCloseWebcam();
+        }
+      }
 
       // 상태 업데이트
       return newSettings;
@@ -62,6 +84,7 @@ const NotificationSettings = () => {
   };
 
   return (
+
     <div className="noti-container">
       <div className="settings">
         <h2 className="title">나의 알림</h2>
@@ -96,6 +119,7 @@ const NotificationSettings = () => {
         ) : (
           <></>
         )}
+        <WebCam ref={webCamRef} />
       </div>
     </div>
   );
