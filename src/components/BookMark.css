@@ -1,0 +1,45 @@
+.bookmarks {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.gpt {
+  width: 80px;
+  height: 80px;
+}
+
+.figma {
+  width: 30.059px;
+  height: 45px;
+  flex-shrink: 0;
+}
+
+.figma-container {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.github {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+
+.github-container {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #fff;
+}

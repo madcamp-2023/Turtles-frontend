@@ -5,6 +5,7 @@ import MyProfile from "../components/MyProfile";
 import ReactCalendar from "../components/ReactCalendar";
 import TodoList from "../components/TodoList";
 import Following from "../components/Following";
+import GoogleSearch from "../components/GoogleSearch";
 
 const items = [
   { id: 1, text: "물 마시기", checked: false, icon: "💧" },
@@ -14,16 +15,19 @@ const items = [
 export default function AllInOne() {
   return (
     <>
-      <Stack direction="row" spacing={20}>
-        <Stack direction="column" spacing={4}>
-          <MyProfile />
-          <Alarm />
+      <Stack direction="column" spacing={8}>
+        <GoogleSearch />
+        <Stack direction="row" spacing={20}>
+          <Stack direction="column" spacing={4}>
+            <MyProfile />
+            <Alarm />
+          </Stack>
+          <Stack spacing={4}>
+            <ReactCalendar />
+            <TodoList title="오늘의 건강 관리" items={items} />
+          </Stack>
+          <Following />
         </Stack>
-        <Stack spacing={4}>
-          <ReactCalendar />
-          <TodoList title="오늘의 건강 관리" items={items} />
-        </Stack>
-        <Following />
       </Stack>
     </>
   );
