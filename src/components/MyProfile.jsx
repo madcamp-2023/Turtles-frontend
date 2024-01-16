@@ -29,11 +29,33 @@ const MyProfile = () => {
     setIsModalOpen(false);
   };
 
-  const handleUpdateBio = (newBio) => {
+  const handleUpdateBio = async (newBio) => {
     setUserData((prevState) => ({
       ...prevState,
       bio: newBio,
     }));
+
+    localStorage.setItem("bio", newBio);
+    const localPort = process.env.REACT_APP_LOCAL_PORT;
+    const uid = localStorage.getItem("uid");
+    const requestBody = {
+      uid: uid,
+      bio: newBio,
+    };
+    try {
+      const response = await fetch(`${localPort}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      const data = await response.json();
+      console.log("POST response:", data);
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
 
   return (
@@ -59,14 +81,13 @@ const MyProfile = () => {
             <EditIcon />
           </IconButton>
         </Stack>
-
-        {isModalOpen && (
+      </div>
+      {isModalOpen && (
           <BioModal
             onClose={handleCloseModal}
             onUpdateBio={handleUpdateBio}
           ></BioModal>
         )}
-      </div>
     </div>
   );
 };

@@ -69,24 +69,24 @@ const WebCam = React.forwardRef((props, ref) => {
           resizedDetections.forEach((detection) => {
             const faceWidth = detection.detection.box.width;
             const distance = estimateDistance(faceWidth);
-            console.log(`Estimated distance: ${distance} cm`);
+            console.log(`Estimated distance: ${distance} cm`); 
 
             const notificationOptions = {
-              icon: "https://github.com/madcamp-2023/w3-essh-frontend/assets/79096116/64bf7473-c399-40a1-8ec9-c479b931c973",
-            };
+                icon: "https://github.com/madcamp-2023/w3-essh-frontend/assets/79096116/64bf7473-c399-40a1-8ec9-c479b931c973",
+              };
 
             if (distance < 50) {
-              if (Notification.permission === "granted") {
-                new Notification("화면 거리", notificationOptions);
-              } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then((permission) => {
-                  if (permission === "granted") {
+                if (Notification.permission === "granted") {
                     new Notification("화면 거리", notificationOptions);
+                  } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then((permission) => {
+                      if (permission === "granted") {
+                        new Notification("화면 거리", notificationOptions);
+                      }
+                    });
                   }
-                });
-              }
             }
-
+                    
             //기준: 50cm로
           });
           canvasRef &&
@@ -111,15 +111,15 @@ const WebCam = React.forwardRef((props, ref) => {
             );
         }
       }
-    }, 10000); //10000밀리초에 한번씩 얼굴 인식
+    }, 5000); //10000밀리초에 한번씩 얼굴 인식
   };
 
   const estimateDistance = (faceWidth) => {
-    const referenceWidth = 150;
-    const referenceDistance = 100;
-
+    const referenceWidth = 150; 
+      const referenceDistance = 100;
+  
     const distance = referenceDistance * (referenceWidth / faceWidth);
-
+  
     return distance;
   };
 
@@ -128,7 +128,7 @@ const WebCam = React.forwardRef((props, ref) => {
     videoRef.current.srcObject.getTracks()[0].stop();
     setCaptureVideo(false);
   };
-
+  
   React.useImperativeHandle(ref, () => ({
     startVideo: () => startVideo(),
     closeWebcam: () => closeWebcam(),
@@ -137,30 +137,30 @@ const WebCam = React.forwardRef((props, ref) => {
   return (
     <div>
       {captureVideo ? (
-        modelsLoaded ? (
-          <div>
-            <div
+          modelsLoaded ? (
+            <div>
+              <div
               style={{
                 display: "none",
                 justifyContent: "center",
                 padding: "10px",
               }}
             >
-              <video
+                <video
                 ref={videoRef}
                 height={videoHeight}
                 width={videoWidth}
                 onPlay={handleVideoOnPlay}
                 style={{ borderRadius: "10px" }}
               />
-              <canvas ref={canvasRef} style={{ position: "absolute" }} />
+                <canvas ref={canvasRef} style={{ position: "absolute" }} />
+                          </div>
             </div>
-          </div>
         ) : (
-          <div>loading...</div>
-        )
+            <div>loading...</div>
+          )
       ) : (
-        <></>
+          <></>
       )}
     </div>
   );

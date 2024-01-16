@@ -4,14 +4,13 @@ import "react-calendar/dist/Calendar.css";
 import "./ReactCalendar.css";
 import moment from "moment";
 
-function ReactCalendar() {
+function ReactCalendar(props) {
   const [value, onChange] = useState(new Date());
-  // todoCounts 상태를 추가
   const [todoCounts, setTodoCounts] = useState({});
 
   useEffect(() => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
-    const uid = localStorage.getItem("uid");
+    const uid = props.uid || localStorage.getItem("uid");
     const today = new Date();
     const isoString = today.toISOString();
     const yyyyMM = isoString.substring(0, 7);
