@@ -1,45 +1,95 @@
+.user-profile-container {
+  display: flex;
+  width: 340px;
+  padding: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .user-profile {
-    background-color: #f7f7f7;
-    padding: 20px;
-    max-width: 400px; /* 최대 너비를 조정하여 컨테이너가 더 많은 텍스트를 수용할 수 있도록 함 */
-    margin: auto;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row; /* 아이템들을 컨테이너의 시작점에 맞춰 정렬 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
 }
 
 .profile-picture {
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0; /* 이미지 크기가 텍스트에 의해 줄어들지 않도록 설정 */
-    margin-right: 20px;
-    width: 100px; /* 고정된 너비 */
-    height: 100px; /* 고정된 높이 */
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; /* 이미지 크기가 텍스트에 의해 줄어들지 않도록 설정 */
+  margin-right: 20px;
+  width: 80px; /* 고정된 너비 */
+  height: 80px; /* 고정된 높이 */
 }
 
 .profile-picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.user-info-container { /* 새로운 컨테이너 클래스 추가 */
-    display: flex;
-    flex-direction: column;
+.user-upper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+  margin-left: 24px;
 }
 
 .user-info {
-    font-weight: bold;
-    font-size: 18px;
+  display: flex;
+  width: 192px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+.user-name {
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 133.4%; /* 32.016px */
 }
 
 .user-id {
-    color: #555;
-    font-size: 16px;
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%; /* 32px */
+  letter-spacing: 0.15px;
 }
-
+.user-bio-container {
+  display: flex;
+  margin-left: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
 .user-bio {
-    color: #777;
-    font-size: 16px;
-    overflow-wrap: break-word; /* 긴 텍스트가 컨테이너를 넘어가지 않도록 설정 */
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%; /* 32px */
+  letter-spacing: 0.15px;
+  overflow-wrap: break-word; /* 긴 텍스트가 컨테이너를 넘어가지 않도록 설정 */
 }

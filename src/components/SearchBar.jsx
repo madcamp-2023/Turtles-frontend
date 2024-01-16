@@ -3,11 +3,12 @@ import Modal from "react-modal";
 import UserProfile from "./UserProfile";
 import "./SearchBar.css";
 import Input from "@mui/material/Input";
+import TextField from "@mui/material/TextField";
+
 import InputAdornment from "@mui/material/InputAdornment";
 import debounce from "lodash/debounce";
 
-import AccountCircle from "@mui/icons-material/AccountCircle";
-
+import SearchIcon from "@mui/icons-material/Search";
 Modal.setAppElement("#root"); // Set the root element for accessibility
 
 const SearchBar = () => {
@@ -55,17 +56,22 @@ const SearchBar = () => {
 
   return (
     <div>
-      <Input
-        id="input-with-icon-adornment"
-        value={searchKeyword}
-        placeholder="GitHub ID로 친구 찾기"
-        startAdornment={
-          <InputAdornment position="start">
-            <AccountCircle />
-          </InputAdornment>
-        }
-        onChange={(e) => setSearchKeyword(e.target.value)}
-      />
+      <div className="input-container">
+        <TextField
+          id="input-with-icon-textfield"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          placeholder="GitHub ID로 친구 검색"
+          variant="standard"
+          onChange={(e) => setSearchKeyword(e.target.value)}
+        />
+      </div>
+
       {searchResult && searchResult.user.length > 0 ? (
         <div className="search-overlay">
           {searchResult.user.map((user) => (

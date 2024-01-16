@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Following.css";
 import SearchBar from "./SearchBar";
 import UserProfile from "./UserProfile";
 import Stack from "@mui/material/Stack";
@@ -42,17 +43,20 @@ export default function Following() {
     <>
       <Stack direction="column">
         <SearchBar />
-        <Stack direction="column">
-          {following.map((user) => (
-            <UserProfile
-              key={user.uid}
-              uid={user.uid}
-              name={user.name}
-              github_id={user.github_id}
-              profile_img={user.profile_img}
-              bio={user.bio}
-            />
-          ))}
+        <Stack direction="column" spacing={2} alignItems="center">
+          <div className="following-title">팔로잉 목록</div>
+          <Stack direction="column">
+            {following.map((user) => (
+              <UserProfile
+                key={user.uid}
+                uid={user.uid}
+                name={user.name}
+                github_id={user.github_id}
+                profile_img={user.profile_img}
+                bio={user.bio}
+              />
+            ))}
+          </Stack>
         </Stack>
       </Stack>
     </>

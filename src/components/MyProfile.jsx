@@ -55,7 +55,7 @@ const MyProfile = () => {
         </div>
         <Stack direction="row" className="my-bio-container">
           <div className="my-bio">{userData.bio}</div>
-          <IconButton aria-label="edit">
+          <IconButton aria-label="edit" onClick={handleClick}>
             <EditIcon />
           </IconButton>
         </Stack>
