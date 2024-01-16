@@ -11,8 +11,11 @@
   align-items: center;
 }
 
-.modal {
+.todo-modal {
   background-color: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 30px 20px 20px 20px;
+  border-radius: 20px;
+}
+.choose-emoji {
+  height: 30px;
 }
