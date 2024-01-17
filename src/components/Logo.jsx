@@ -9,7 +9,7 @@ export default function Logo() {
         className="logo-img"
       />
       <img
-        src="https://github.com/madcamp-2023/w3-essh-frontend/assets/79096116/346178d8-d4ea-4b85-9e12-a7b7e5703bdf"
+        src="https://github.com/madcamp-2023/Turtles-frontend/assets/79096116/1b73d766-69d3-4591-bad3-8ca7fa3fe2fe"
         className="logo-text"
       />
     </div>
