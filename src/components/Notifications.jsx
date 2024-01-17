@@ -12,18 +12,9 @@ const ListItem = ({ text, isEnabled, onToggle }) => {
   return (
     <div className="list-item">
       <div className="todo-left">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-        >
-          <path
-            d="M12 21.75C13.1 21.75 14 20.85 14 19.75H10C10 20.85 10.89 21.75 12 21.75ZM18 15.75V10.75C18 7.68 16.36 5.11 13.5 4.43V3.75C13.5 2.92 12.83 2.25 12 2.25C11.17 2.25 10.5 2.92 10.5 3.75V4.43C7.63 5.11 6 7.67 6 10.75V15.75L4 17.75V18.75H20V17.75L18 15.75Z"
-            fill="#799E7D"
-          />
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
+  <path d="M8 19.75C9.1 19.75 10 18.85 10 17.75H6C6 18.85 6.89 19.75 8 19.75ZM14 13.75V8.75C14 5.68 12.36 3.11 9.5 2.43V1.75C9.5 0.92 8.83 0.25 8 0.25C7.17 0.25 6.5 0.92 6.5 1.75V2.43C3.63 3.11 2 5.67 2 8.75V13.75L0 15.75V16.75H16V15.75L14 13.75Z" fill="#799E7D"/>
+</svg>
         <span className="todo-content">{text}</span>
       </div>
 
