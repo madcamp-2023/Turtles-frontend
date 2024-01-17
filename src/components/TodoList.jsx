@@ -247,8 +247,6 @@ const TodoList = ({ title, items }) => {
       </div>
       {isModalOpen && (
         <TodoModal onClose={handleCloseModal} onAddItem={handleAddItem}>
-          <p>모달 컨텐츠</p>
-          {/* 기타 내용 */}
         </TodoModal>
       )}
     </div>

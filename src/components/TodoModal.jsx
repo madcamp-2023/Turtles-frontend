@@ -25,7 +25,7 @@ const TodoModal = ({ onClose, onAddItem }) => {
 
   return (
     <div className="modal-backdrop">
-      <div className="todo-modal">
+      <div className="modal">
         <div className='choose-emoji'>
         {chosenEmoji ? <span>이모지를 선택하세요{chosenEmoji.emoji}</span> : <span>이모지를 선택하세요.</span>}
         </div>
