@@ -46,7 +46,7 @@
   color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
   font-feature-settings: "clig" off, "liga" off;
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   margin-left: 10px;
@@ -91,11 +91,11 @@
 }
 
 input:checked + .slider {
-  background-color: #799E7D;
+  background-color: #799e7d;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #799E7D;
+  box-shadow: 0 0 1px #799e7d;
 }
 
 input:checked + .slider:before {
