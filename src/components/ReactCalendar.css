@@ -1,5 +1,5 @@
 .react-calendar {
-    width: 336px;
+    width: 340px;
     max-width: 100%;
     background:rgba(255, 255, 255, 0.3);
     border: 1px solid transparent;
@@ -33,3 +33,7 @@
     background-color: #E1F3E3;
   }
   
+  .react-calendar__navigation__label > span {
+    font-size:  24px;
+    font-weight: bold ;
+  }

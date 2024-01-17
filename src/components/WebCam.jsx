@@ -118,7 +118,7 @@ const WebCam = React.forwardRef((props, ref) => {
             );
         }
       }
-    }, 5000); //10000밀리초에 한번씩 얼굴 인식
+    }, 10000); //10000밀리초에 한번씩 얼굴 인식
   };
 
   const estimateDistance = (faceWidth) => {
