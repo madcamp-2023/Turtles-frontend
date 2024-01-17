@@ -4,7 +4,8 @@ import "./LoginBtn.css";
 
 function LoginBtn() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
-  const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+  const redirectUri =
+    "https://w3-essh-frontend-mw19td04y-madprotector.vercel.app/callback";
 
   console.log(`clientId: ${clientId}`);
   console.log(`redirectUri: ${redirectUri}`);
