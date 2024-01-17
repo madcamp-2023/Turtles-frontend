@@ -7,14 +7,13 @@ import TodoList from "../components/TodoList";
 import Following from "../components/Following";
 import GoogleSearch from "../components/GoogleSearch";
 
-const items = [
-];
+const items = [];
 const uid = localStorage.getItem("uid");
 
 export default function AllInOne() {
   return (
     <>
-      <Stack direction="column" spacing={8}>
+      <Stack direction="column" spacing={4}>
         <GoogleSearch />
         <Stack direction="row" spacing={20}>
           <Stack direction="column" spacing={4}>
