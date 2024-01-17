@@ -107,7 +107,7 @@ const TodoList = ({ title, items, uid: externalUid, date: externalDate }) => {
     const getTodo = async () => {
       try {
         const response = await fetch(
-          `${localPort}/todo?uid=${uid}&date=${date}`,
+          `${localPort}/todo?uid=${uid}&date=${date.substring(0, 7)}`, // YYYY-MM 형식으로 요청
           {
             method: "GET",
             headers: {
@@ -115,25 +115,38 @@ const TodoList = ({ title, items, uid: externalUid, date: externalDate }) => {
             },
           }
         );
-
+  
         const data = await response.json();
         if (data.success && data.todos.length > 0) {
-          const todos = data.todos[0].todos.map((todo, index) => ({
-            id: index,
-            icon: todo.todo_icon,
-            text: todo.todo_name,
-            checked: todo.todo_complete,
-          }));
-          setTodoItems(todos);
+          // externalDate에 해당하는 날짜의 데이터만 필터링
+          const relevantTodos = data.todos.filter(todo => 
+            todo.date.split("T")[0] === date
+          );
+          console.log(relevantTodos);
+
+          if (relevantTodos.length > 0) {
+            const todos = relevantTodos[0].todos.map((todo, index) => ({
+              id: index,
+              icon: todo.todo_icon,
+              text: todo.todo_name,
+              checked: todo.todo_complete,
+            }));
+            console.log(todos);
+            console.log(date);
+
+            setTodoItems(todos);
+          } else {
+            // 해당 날짜에 할 일이 없는 경우
+            setTodoItems([]);
+          }
         }
       } catch (error) {
         console.error("Error fetching access todo:", error);
       }
     };
-
+  
     getTodo();
-  }, [date]);
-
+  }, [date, externalDate, uid]); 
   const handleAddClick = () => {
     setIsModalOpen(true);
   };
@@ -250,7 +263,8 @@ const TodoList = ({ title, items, uid: externalUid, date: externalDate }) => {
               key={index}
               item={item}
               onItemCheck={handleItemCheck}
-              onItemDelete={handleItemDelete} // 아이템 삭제 핸들러 전달
+              onItemDelete={handleItemDelete}
+              isEditable={isEditable} // 아이템 삭제 핸들러 전달
             />
           ))}
         </div>
