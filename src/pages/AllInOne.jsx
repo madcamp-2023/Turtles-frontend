@@ -21,8 +21,8 @@ export default function AllInOne() {
             <Alarm />
           </Stack>
           <Stack spacing={4}>
-            <ReactCalendar />
-            <TodoList title="오늘의 건강 관리" items={items} />
+            <ReactCalendar uid={uid} />
+            <TodoList title="오늘의 건강 관리" items={items}/>
           </Stack>
           <Following />
         </Stack>

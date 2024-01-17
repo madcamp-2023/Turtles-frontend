@@ -119,21 +119,26 @@ function ReactCalendar(props) {
 
       />
       {showText && (
-        <div
-          style={{
-            position: "absolute",
-            left: `${textPosition.x}px`,
-            top: `${textPosition.y}px`,
-            background: "rgba(255, 255, 255, 0.5)",
-            padding: "10px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            backdropFilter: "blur(16px)"
-          }}
-        >
-          <TodoList title={selectedDate} items={[]} date={selectedDate} />
-        </div>
-      )}
+  <div
+    style={{
+      position: "absolute",
+      left: `${textPosition.x}px`,
+      top: `${textPosition.y}px`,
+      background: "rgba(255, 255, 255, 0.5)",
+      padding: "10px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      backdropFilter: "blur(16px)",
+      // uid가 로컬 스토리지의 uid와 다를 때 가로 길이 조절 및 이동
+      transform: `${
+        props.uid !== localStorage.getItem("uid") ? 'translate(-480px, -190px)' : 'none'
+      }`,
+      width: `${props.uid !== localStorage.getItem("uid") ? '250px' : 'auto'}`,
+    }}
+  >
+    <TodoList title={selectedDate} items={[]} date={selectedDate} uid={props.uid} />
+  </div>
+)}
     </div>
   );
 }
