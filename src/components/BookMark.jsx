@@ -1,5 +1,6 @@
 import React from "react";
 import "./BookMark.css";
+import LogoutBtn from "./LogoutBtn";
 
 export default function BookMark() {
   const openLinkInNewTab = (url) => {
@@ -39,6 +40,9 @@ export default function BookMark() {
           className="github"
           alt="GitHub"
         />
+      </div>
+      <div className="logout-container">
+        <LogoutBtn />
       </div>
     </div>
   );
