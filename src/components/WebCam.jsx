@@ -69,24 +69,30 @@ const WebCam = React.forwardRef((props, ref) => {
           resizedDetections.forEach((detection) => {
             const faceWidth = detection.detection.box.width;
             const distance = estimateDistance(faceWidth);
-            console.log(`Estimated distance: ${distance} cm`); 
+            console.log(`Estimated distance: ${distance} cm`);
 
             const notificationOptions = {
-                icon: "https://github.com/madcamp-2023/w3-essh-frontend/assets/79096116/64bf7473-c399-40a1-8ec9-c479b931c973",
-              };
+              icon: "https://s3-alpha-sig.figma.com/img/a851/75e2/bc767d8e5b73b48d3b1c2466d005e108?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=DIrnYhfuEmfTdE6EtNTJLbs5fwxmo4RAaO4bTqe9bb1yhPWiTwCOK5cx7XPCXAXUUoyBFJjoj5rGs2qWcOKWvMSngkEGMHBSQ3vOphDjltEF7US1~PSeX0NNc5MlG4Jn2bQd167U0ey4IyncMFfCLA1wN0ICZ79Eruw5gjvdv-qoA0HoP3ucZcrZWRvz1gQpAy2rjlpObujfCJQv7TJI~jfZILtKWr7Nf3waRj9QrLjwHRIo0~g0izGExduQlEbonUEagFINcLmQMfVwJbsr4eKRb6c8YXf6HUoO3J~PBI8NZ5cWYMftfBi38632uWn1nUjgGF7NqLH69RI0UsGLvg__",
+            };
 
-            if (distance < 50) {
-                if (Notification.permission === "granted") {
-                    new Notification("화면 거리", notificationOptions);
-                  } else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then((permission) => {
-                      if (permission === "granted") {
-                        new Notification("화면 거리", notificationOptions);
-                      }
-                    });
+            if (distance < 65) {
+              if (Notification.permission === "granted") {
+                new Notification(
+                  "모니터와 얼굴이 너무 가까워요!",
+                  notificationOptions
+                );
+              } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then((permission) => {
+                  if (permission === "granted") {
+                    new Notification(
+                      "모니터와 얼굴이 너무 가까워요!",
+                      notificationOptions
+                    );
                   }
+                });
+              }
             }
-                    
+
             //기준: 50cm로
           });
           canvasRef &&
@@ -115,11 +121,11 @@ const WebCam = React.forwardRef((props, ref) => {
   };
 
   const estimateDistance = (faceWidth) => {
-    const referenceWidth = 150; 
-      const referenceDistance = 100;
-  
+    const referenceWidth = 150;
+    const referenceDistance = 100;
+
     const distance = referenceDistance * (referenceWidth / faceWidth);
-  
+
     return distance;
   };
 
@@ -128,7 +134,7 @@ const WebCam = React.forwardRef((props, ref) => {
     videoRef.current.srcObject.getTracks()[0].stop();
     setCaptureVideo(false);
   };
-  
+
   React.useImperativeHandle(ref, () => ({
     startVideo: () => startVideo(),
     closeWebcam: () => closeWebcam(),
@@ -137,30 +143,30 @@ const WebCam = React.forwardRef((props, ref) => {
   return (
     <div>
       {captureVideo ? (
-          modelsLoaded ? (
-            <div>
-              <div
+        modelsLoaded ? (
+          <div>
+            <div
               style={{
                 display: "none",
                 justifyContent: "center",
                 padding: "10px",
               }}
             >
-                <video
+              <video
                 ref={videoRef}
                 height={videoHeight}
                 width={videoWidth}
                 onPlay={handleVideoOnPlay}
                 style={{ borderRadius: "10px" }}
               />
-                <canvas ref={canvasRef} style={{ position: "absolute" }} />
-                          </div>
+              <canvas ref={canvasRef} style={{ position: "absolute" }} />
             </div>
+          </div>
         ) : (
-            <div>loading...</div>
-          )
+          <div>loading...</div>
+        )
       ) : (
-          <></>
+        <></>
       )}
     </div>
   );

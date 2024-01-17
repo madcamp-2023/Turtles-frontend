@@ -15,8 +15,9 @@ export default function GoogleSearch() {
         searchQuery
       )}`;
 
-      // Replace the current URL with the search URL
-      window.location.replace(searchUrl);
+      // Open a new tab and redirect to the search URL
+      const newTab = window.open();
+      newTab.location.assign(searchUrl);
     }
   };
 
