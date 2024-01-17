@@ -11,13 +11,9 @@ const UserProfile = ({ uid, github_id, name, profile_img, bio }) => {
 
   // 모달 토글 함수
   const toggleModal = () => {
-    setModalOpen(true);
+    setModalOpen(!isModalOpen);
   };
 
-  
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <div className="user-profile-container" onClick={toggleModal}>
@@ -36,7 +32,7 @@ const UserProfile = ({ uid, github_id, name, profile_img, bio }) => {
         </div>
       </div>
       {isModalOpen && (
-        <FollowingModal onClose={handleCloseModal} uid={uid}></FollowingModal>
+        <FollowingModal onClose={toggleModal} uid={uid} name={name}></FollowingModal>
         )}
     </div>
   );
