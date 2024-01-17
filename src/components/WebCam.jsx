@@ -75,7 +75,7 @@ const WebCam = React.forwardRef((props, ref) => {
                 icon: "https://github.com/madcamp-2023/w3-essh-frontend/assets/79096116/64bf7473-c399-40a1-8ec9-c479b931c973",
               };
 
-            if (distance < 50) {
+            if (distance < 65) {
                 if (Notification.permission === "granted") {
                     new Notification("화면 거리", notificationOptions);
                   } else if (Notification.permission !== "denied") {
@@ -86,8 +86,7 @@ const WebCam = React.forwardRef((props, ref) => {
                     });
                   }
             }
-                    
-            //기준: 50cm로
+            //기준: 65cm로
           });
           canvasRef &&
             canvasRef.current &&

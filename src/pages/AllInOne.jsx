@@ -8,9 +8,8 @@ import Following from "../components/Following";
 import GoogleSearch from "../components/GoogleSearch";
 
 const items = [
-  { id: 1, text: "물 마시기", checked: false, icon: "💧" },
-  { id: 2, text: "비타민 먹기", checked: false, icon: "💊" },
 ];
+const uid = localStorage.getItem("uid");
 
 export default function AllInOne() {
   return (
@@ -24,7 +23,7 @@ export default function AllInOne() {
           </Stack>
           <Stack spacing={4}>
             <ReactCalendar />
-            <TodoList title="오늘의 건강 관리" items={items} />
+            <TodoList title="오늘의 건강 관리" items={items}/>
           </Stack>
           <Following />
         </Stack>
