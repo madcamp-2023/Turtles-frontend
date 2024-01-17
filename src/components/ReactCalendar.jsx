@@ -133,8 +133,7 @@ function ReactCalendar(props) {
       transform: `${
         props.uid !== localStorage.getItem("uid") ? 'translate(-480px, -190px)' : 'none'
       }`,
-      width: `${props.uid !== localStorage.getItem("uid") ? '250px' : 'auto'}`,
-    }}
+      width: `${props.uid !== localStorage.getItem("uid") ? '250px' : 'auto'}`,}}
   >
     <TodoList title={selectedDate} items={[]} date={selectedDate} uid={props.uid} />
   </div>

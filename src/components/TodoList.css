@@ -64,8 +64,8 @@
 
 .item .text {
   flex-grow: 1;
-  font-size: 16px;
-  margin-left: 5px;
+  font-size: 18px;
+  margin-left: 10px;
 }
 
 .item.checked .text {
