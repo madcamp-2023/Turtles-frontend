@@ -1,12 +1,14 @@
 .todo-container {
-  font-family: "Arial", sans-serif;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid transparent;
+  display: flex;
+  width: 340px;
+  padding: 16px;
+  padding-top: 24px;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   border-radius: 20px;
-  padding: 10px 30px 10px 30px;
-  max-height: 276px;
-  overflow-y: auto;
-  margin: auto;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .todo-text-container {
@@ -27,7 +29,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
   gap: 16px;
 }
 
@@ -38,6 +39,7 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
+  line-height: 123.5%; /* 39.52px */
   letter-spacing: 0.25px;
 }
 

@@ -1,8 +1,21 @@
+.following-container {
+  display: flex;
+  width: 340px;
+  padding: 16px;
+  padding-top: 24px;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .following-title {
   color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
   font-feature-settings: "clig" off, "liga" off;
   font-family: Roboto;
-  font-size: 32px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 123.5%; /* 39.52px */

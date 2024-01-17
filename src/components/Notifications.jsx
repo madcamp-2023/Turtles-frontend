@@ -84,7 +84,7 @@ const NotificationSettings = () => {
   return (
     <div className="noti-container">
       <div className="settings">
-        <h2 className="title">나의 알림</h2>
+        <div className="noti-title">나의 알림</div>
         <Stack direction="column" spacing={2}>
           {Object.entries(settings).map(([text, isEnabled], index) => (
             <ListItem
