@@ -4,20 +4,25 @@
     #b1e3b6 0%,
     rgba(255, 186, 11, 0.425) 100%
   );
-  height: 100vh;
   display: flex;
+  padding: 320px 85px 400px 85px;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: "Inter", sans-serif;
+  gap: 160px;
 }
 
 .callback-text {
   color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
   font-feature-settings: "clig" off, "liga" off;
-  font-family: Roboto;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
-  line-height: 123.5%; /* 39.52px */
   letter-spacing: 0.25px;
+}
+
+.callback-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 101px;
 }
