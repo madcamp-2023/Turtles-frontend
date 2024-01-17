@@ -27,20 +27,12 @@
 }
 
 .AppGlass {
-  display: grid;
-  height: 97%;
-  width: 97%;
-  background: var(--glass);
-  border-radius: 2rem;
-  gap: 16px;
-  grid-template-columns: 11rem auto;
-  overflow: hidden;
+  overflow: auto;
 }
 
 @media screen and (max-width: 1200px) {
   .AppGlass {
-    grid-template-columns: 10% 50% auto;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 

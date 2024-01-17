@@ -59,7 +59,7 @@ export default function Following() {
         <SearchBar onUpdate={handleUpdateFollowing} />
         <Stack direction="column" spacing={2} alignItems="center">
           <div className="following-title">팔로잉 목록</div>
-          <Stack direction="column" spacing={2}>
+          <div className="following-list">
             {following.map((user) => (
               <UserProfile
                 key={user.uid}
@@ -70,7 +70,7 @@ export default function Following() {
                 bio={user.bio}
               />
             ))}
-          </Stack>
+          </div>
         </Stack>
       </Stack>
     </>

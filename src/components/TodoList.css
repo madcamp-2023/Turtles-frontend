@@ -4,7 +4,8 @@
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 10px 30px 10px 30px;
-  max-width: 276px;
+  max-height: 276px;
+  overflow-y: auto;
   margin: auto;
 }
 
