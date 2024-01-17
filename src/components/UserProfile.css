@@ -1,14 +1,15 @@
-.user-profile-container {
+.following-profile-container {
   display: flex;
-  width: 340px;
+  width: 320px;
   padding: 16px;
   padding-top: 24px;
   padding-bottom: 24px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Add this line to set border properties */
 }
 
 .user-profile {

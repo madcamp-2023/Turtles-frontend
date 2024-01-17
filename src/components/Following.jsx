@@ -57,21 +57,23 @@ export default function Following() {
     <>
       <Stack direction="column" spacing={2}>
         <SearchBar onUpdate={handleUpdateFollowing} />
-        <Stack direction="column" spacing={2} alignItems="center">
-          <div className="following-title">팔로잉 목록</div>
-          <Stack direction="column" spacing={2}>
-            {following.map((user) => (
-              <UserProfile
-                key={user.uid}
-                uid={user.uid}
-                name={user.name}
-                github_id={user.github_id}
-                profile_img={user.profile_img}
-                bio={user.bio}
-              />
-            ))}
+        <div className="following-container">
+          <Stack direction="column" spacing={2} alignItems="center">
+            <div className="following-title">팔로잉 목록</div>
+            <div className="following-list">
+              {following.map((user) => (
+                <UserProfile
+                  key={user.uid}
+                  uid={user.uid}
+                  name={user.name}
+                  github_id={user.github_id}
+                  profile_img={user.profile_img}
+                  bio={user.bio}
+                />
+              ))}
+            </div>
           </Stack>
-        </Stack>
+        </div>
       </Stack>
     </>
   );

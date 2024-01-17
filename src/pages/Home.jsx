@@ -16,7 +16,9 @@ function Home() {
 
   return (
     <div className="App">
-      <AllInOne />
+      <div className="AppGlass">
+        <AllInOne />
+      </div>
     </div>
   );
 }

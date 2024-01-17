@@ -7,15 +7,13 @@ import TodoList from "../components/TodoList";
 import Following from "../components/Following";
 import GoogleSearch from "../components/GoogleSearch";
 
-const items = [
-  { id: 1, text: "물 마시기", checked: false, icon: "💧" },
-  { id: 2, text: "비타민 먹기", checked: false, icon: "💊" },
-];
+const items = [];
+const uid = localStorage.getItem("uid");
 
 export default function AllInOne() {
   return (
     <>
-      <Stack direction="column" spacing={8}>
+      <Stack direction="column" spacing={4}>
         <GoogleSearch />
         <Stack direction="row" spacing={20}>
           <Stack direction="column" spacing={4}>
@@ -23,8 +21,8 @@ export default function AllInOne() {
             <Alarm />
           </Stack>
           <Stack spacing={4}>
-            <ReactCalendar />
-            <TodoList title="오늘의 건강 관리" items={items} />
+            <ReactCalendar uid={uid} />
+            <TodoList title="오늘의 건강 관리" items={items}/>
           </Stack>
           <Following />
         </Stack>

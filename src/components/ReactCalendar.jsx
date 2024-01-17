@@ -3,10 +3,41 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./ReactCalendar.css";
 import moment from "moment";
+import TodoList from "./TodoList";
 
 function ReactCalendar(props) {
   const [value, onChange] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState("");
   const [todoCounts, setTodoCounts] = useState({});
+  const [showText, setShowText] = useState(false);
+  const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showText) {
+        setShowText(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showText]);
+
+  const handleDateChange = (newValue) => {
+    onChange(newValue);
+    const formattedDate = moment(newValue).format("YYYY-MM-DD");
+    setSelectedDate(formattedDate);
+    setShowText(true);
+  };
+
+  const handleDayClick = (value, event) => {
+    console.log("Clicked at: X =", event.clientX, "Y =", event.clientY); // 콘솔에 좌표 출력
+    setTextPosition({ x: event.clientX, y: event.clientY });
+    handleDateChange(value); // 날짜 변경 처리
+  };
+
 
   useEffect(() => {
     const localPort = process.env.REACT_APP_LOCAL_PORT;
@@ -59,6 +90,7 @@ function ReactCalendar(props) {
     <div>
       <Calendar
         onChange={onChange}
+        onClickDay={handleDayClick}// 이벤트 핸들러를 handleDateChange로 변경
         value={value}
         minDetail="month"
         next2Label={null}
@@ -84,7 +116,28 @@ function ReactCalendar(props) {
             }
           }
         }}
+
       />
+      {showText && (
+  <div
+    style={{
+      position: "absolute",
+      left: `${textPosition.x}px`,
+      top: `${textPosition.y}px`,
+      background: "rgba(255, 255, 255, 0.5)",
+      padding: "10px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      backdropFilter: "blur(16px)",
+      // uid가 로컬 스토리지의 uid와 다를 때 가로 길이 조절 및 이동
+      transform: `${
+        props.uid !== localStorage.getItem("uid") ? 'translate(-480px, -190px)' : 'none'
+      }`,
+      width: `${props.uid !== localStorage.getItem("uid") ? '250px' : 'auto'}`,}}
+  >
+    <TodoList title={selectedDate} items={[]} date={selectedDate} uid={props.uid} />
+  </div>
+)}
     </div>
   );
 }

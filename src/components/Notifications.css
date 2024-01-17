@@ -1,13 +1,13 @@
 .noti-container {
   display: flex;
-  flex-direction: column;
+  padding: 16px;
+  padding-top: 24px;
+  padding-bottom: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  cursor: pointer;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.3);
-  padding-bottom: 28px;
-  padding-top: 24px;
 }
 
 .settings {
@@ -15,7 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 24px;
   align-self: stretch;
 }
 .list-item {
@@ -23,34 +23,41 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-  gap: 16px;
+  gap: 30px;
 }
-.title {
-  text-align: left;
-  margin-bottom: 20px;
+.noti-title {
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 39.52px */
+  letter-spacing: 0.25px;
 }
 
 .todo-left {
   display: flex;
   align-items: center;
-  gap: 16px;
   flex: 1 0 0;
 }
+
 .todo-content {
   color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
   font-feature-settings: "clig" off, "liga" off;
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
+  margin-left: 10px;
   line-height: 133.4%; /* 26.68px */
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 50px;
+  height: 28px;
 }
 
 .switch input {
@@ -74,8 +81,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 20px;
+  width: 20px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -84,15 +91,15 @@
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: #799e7d;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px #799e7d;
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(22px);
 }
 
 /* Rounded sliders */

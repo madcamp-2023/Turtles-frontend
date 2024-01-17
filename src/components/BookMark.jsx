@@ -1,17 +1,22 @@
 import React from "react";
 import "./BookMark.css";
+import LogoutBtn from "./LogoutBtn";
 
 export default function BookMark() {
+  const openLinkInNewTab = (url) => {
+    window.open(url, "_blank");
+  };
+
   const handleGPTClick = () => {
-    window.location.href = "https://chat.openai.com/chat";
+    openLinkInNewTab("https://chat.openai.com/chat");
   };
 
   const handleFigmaClick = () => {
-    window.location.href = "https://figma.com";
+    openLinkInNewTab("https://figma.com");
   };
 
   const handleGithubClick = () => {
-    window.location.href = "https://github.com/";
+    openLinkInNewTab("https://github.com/");
   };
 
   return (
@@ -35,6 +40,9 @@ export default function BookMark() {
           className="github"
           alt="GitHub"
         />
+      </div>
+      <div className="logout-container">
+        <LogoutBtn />
       </div>
     </div>
   );
