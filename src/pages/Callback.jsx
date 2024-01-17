@@ -39,7 +39,7 @@ function Callback() {
   useEffect(() => {
     const getToken = async () => {
       try {
-        const response = await fetch(`https://${localPort}/login`, {
+        const response = await fetch(`/${localPort}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
