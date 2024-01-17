@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import BookMark from "./BookMark";
 import "./GoogleSearch.css";
+import Logo from "./Logo";
 
 export default function GoogleSearch() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,15 +22,21 @@ export default function GoogleSearch() {
 
   return (
     <div className="header">
-      <>{/* logo */}</>
-      <TextField
-        id="input-with-sx"
-        label="Google 검색 또는 URL 입력"
-        variant="standard"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
+      <Logo />
+      <div className="google-search-container">
+        <div className="google-search">
+          <TextField
+            id="input-with-sx"
+            label="Google 검색 또는 URL 입력"
+            variant="standard"
+            fullWidth
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+        </div>
+      </div>
+
       <BookMark />
     </div>
   );

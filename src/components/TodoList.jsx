@@ -220,35 +220,39 @@ const TodoList = ({ title, items }) => {
   };
 
   return (
-    <div className="container">
-      <header className="header">
-        <h2 className="title">{title}</h2>
-        <button className="add-button" onClick={handleAddClick}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 14 14"
-            fill="none"
-          >
-            <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#799E7D" />
-          </svg>
-        </button>
-      </header>
-      <div className="items">
-        {todoItems.map((item, index) => (
-          <TodoItem
-            key={index}
-            item={item}
-            onItemCheck={handleItemCheck}
-            onItemDelete={handleItemDelete} // 아이템 삭제 핸들러 전달
-          />
-        ))}
+    <div className="todo-container">
+      <div className="todo-text-container">
+        <header className="todo-header">
+          <div className="todo-title">{title}</div>
+          <button className="add-button" onClick={handleAddClick}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#799E7D" />
+            </svg>
+          </button>
+        </header>
+        <div className="items">
+          {todoItems.map((item, index) => (
+            <TodoItem
+              key={index}
+              item={item}
+              onItemCheck={handleItemCheck}
+              onItemDelete={handleItemDelete} // 아이템 삭제 핸들러 전달
+            />
+          ))}
+        </div>
+        {isModalOpen && (
+          <TodoModal
+            onClose={handleCloseModal}
+            onAddItem={handleAddItem}
+          ></TodoModal>
+        )}
       </div>
-      {isModalOpen && (
-        <TodoModal onClose={handleCloseModal} onAddItem={handleAddItem}>
-        </TodoModal>
-      )}
     </div>
   );
 };

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import UserSearch from "./UserSearch";
 import "./SearchBar.css";
-import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
 
 import InputAdornment from "@mui/material/InputAdornment";
-import debounce from "lodash/debounce";
 
 import SearchIcon from "@mui/icons-material/Search";
 Modal.setAppElement("#root"); // Set the root element for accessibility
@@ -86,6 +84,7 @@ export default function SearchBar({ onUpdate }) {
       <div className="input-container">
         <TextField
           id="input-with-icon-textfield"
+          fullWidth
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
