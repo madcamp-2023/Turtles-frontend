@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import Home from "./Home";
+import Logo from "../components/Logo";
+
 import "./Callback.css";
 
 function Callback() {
@@ -81,7 +83,10 @@ function Callback() {
 
   return (
     <div className="callback">
-      <div className="callback-text">로딩 중 ...</div>
+      <div className="callback-logo">
+        <Logo />
+      </div>
+      <div className="callback-text">Loading</div>
     </div>
   );
 }

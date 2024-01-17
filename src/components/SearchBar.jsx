@@ -84,6 +84,7 @@ export default function SearchBar({ onUpdate }) {
       <div className="input-container">
         <TextField
           id="input-with-icon-textfield"
+          fullWidth
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

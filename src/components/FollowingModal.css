@@ -1,0 +1,43 @@
+/* FollowingModal.css */
+.following-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .following-modal {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    padding: 10px 25px 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .calendar-todo-wrapper {
+    display: flex;
+    justify-content: space-around; /* 컴포넌트 간 수평 간격 조정 */
+    align-items: flex-start; /* 상단 정렬 */
+    gap: 20px; /* 컴포넌트 사이의 간격 */
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .close-button {
+    background: transparent; 
+    border: none;            
+    padding: 0;             
+    margin: 0;              
+    cursor: pointer;    
+    cursor: pointer;
+  }

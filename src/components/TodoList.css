@@ -1,6 +1,6 @@
-.container {
-  font-family: 'Arial', sans-serif;
-  background:rgba(255, 255, 255, 0.3);
+.todo-container {
+  font-family: "Arial", sans-serif;
+  background: rgba(255, 255, 255, 0.3);
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 10px 30px 10px 30px;
@@ -8,34 +8,47 @@
   margin: auto;
 }
 
-.calendar-container {
-display: flex;
-justify-content: center; /* 수평 중앙 정렬 */
-align-items: center;     /* 수직 중앙 정렬 */
-}
-
-.header {
+.todo-text-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  align-self: stretch;
 }
 
-.title {
+.calendar-container {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.todo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 16px;
+}
+
+.todo-title {
+  color: var(--Light-Text-Primary, rgba(0, 0, 0, 0.87));
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.25px;
 }
 
 .add-button {
-  background: transparent; 
-  border: none;            
-  padding: 0;             
-  margin: 0;              
-  cursor: pointer;    
-  cursor: pointer;
-}
-
-.items {
-  list-style: none;
+  background: transparent;
+  border: none;
   padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  padding: 12px;
+  align-items: center;
 }
 
 .item {
@@ -59,20 +72,19 @@ align-items: center;     /* 수직 중앙 정렬 */
 
 /* 추가적인 스타일링을 원하시면 이곳에 작성하세요. */
 
-
 .context-menu {
-position: absolute;
-background-color: white;
-border: 1px solid #ccc;
-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-padding: 5px;
-z-index: 1000;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  z-index: 1000;
 }
 
 .context-menu-item {
-cursor: pointer;
-padding: 5px;
-&:hover {
-  background-color: #f0f0f0;
-}
+  cursor: pointer;
+  padding: 5px;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }

@@ -1,5 +1,5 @@
 /* TodoModal.css */
-.modal-backdrop {
+.todo-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,11 +11,82 @@
   align-items: center;
 }
 
-.modal {
+.todo-modal {
+  width: 650px;
   background-color: white;
-  padding: 30px 20px 20px 20px;
+  padding: 30px;
   border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
 }
+
+.modal-content {
+  display: flex;
+  gap: 30px; 
+}
+
+.emoji-picker-container {
+  flex: 1; /* 이모지 피커가 왼쪽 영역을 차지하도록 설정 */
+}
+
+.input-button-container {
+  flex: 2; /* 입력 필드와 버튼이 오른쪽 영역을 차지하도록 설정 */
+  display: flex;
+  flex-direction: column;
+}
+
+
 .choose-emoji {
-  height: 30px;
+  min-height: 50px; /* 최소 높이 설정 */
+  margin-top: 5px; /* 상단 마진 */
+  margin-bottom: 20px; /* 하단 마진 */
+
+}
+
+.choose-emoji span {
+  font-size: 2em; /* 이모지의 크기를 키움 */
+
+}
+
+.todo-modal h3 {
+  margin-top: 0px; /* 상단 마진 */
+  margin-bottom: 0px; /* 하단 마진 */
+  /* 필요에 따라 좌우 마진도 설정할 수 있습니다. */
+}
+
+.input-button-container input {
+  padding: 5px;
+  margin-top: 10px; 
+  margin-bottom: auto; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 16px;
+}
+
+.btnAdd{
+  background: #799E7D;
+  font-size: 16px;
+  color: white;
+  border: none; 
+  border-radius: 10px;            
+  padding: 10px 20px 10px 20px;             
+  cursor: pointer;    
+  cursor: pointer;
+}
+
+.btnClose{
+  background: #cdcdcd; 
+  font-size: 16px;
+  color: #333333;
+  border: none; 
+  border-radius: 10px;            
+  padding: 10px 20px 10px 20px;             
+  cursor: pointer;    
+  cursor: pointer;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }

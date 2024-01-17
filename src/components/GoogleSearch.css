@@ -1,21 +1,28 @@
-/* .header {
+.header {
   display: flex;
   width: 100%;
-  justify-content: center;
   align-items: center;
   gap: 100px;
-} */
-
-.top-search {
-  display: flex;
-  width: 100%;
-  padding: 16px 32px;
-  justify-content: stretch;
-  align-items: center;
-  gap: 8px;
-  border-radius: 36px;
-  background: rgba(255, 255, 255, 0.3);
 }
-#input-with-sx {
-  width: 100%; /* Set the width to 100% to fill the container */
+
+.google-search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+}
+
+.google-search-container {
+  width: 100%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px 30px 15px 30px;
+}
+.MuiTextField-root > label {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  padding-left: 12px;
 }
